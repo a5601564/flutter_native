@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:native_test/native_camera.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: NativeCamera(),
     );
   }
 }
@@ -29,8 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static const platform =
-      const MethodChannel('com.example.native_test/battery');
+  static const platform = const MethodChannel('com.example.native_test/native');
   // Get battery level.
   String _batteryLevel = 'Unknown battery level.';
 

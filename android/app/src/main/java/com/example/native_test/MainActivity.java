@@ -15,7 +15,7 @@ import io.flutter.embedding.engine.FlutterEngine;
 import io.flutter.plugin.common.MethodChannel;
 
 public class MainActivity extends FlutterActivity {
-    private static final String CHANNEL = "com.example.native_test/battery";
+    private static final String CHANNEL = "com.example.native_test/native";
 
     @Override
     public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
@@ -37,6 +37,17 @@ public class MainActivity extends FlutterActivity {
                                 }
                             })
                     );
+        new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), CHANNEL)
+                .setMethodCallHandler(
+                        ((call, result) -> {
+                            // Note: this method is invoked on the main thread.
+                            if (call.method.equals("takePhoto")) {
+                              readyCamera();
+                            } else {
+                                result.notImplemented();
+                            }
+                        })
+                );
     }
     private int getBatteryLevel() {
         int batteryLevel = -1;
@@ -52,5 +63,8 @@ public class MainActivity extends FlutterActivity {
 
         return batteryLevel;
     }
-
+    public void readyCamera() {
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        startActivity(intent);
+    }
 }
