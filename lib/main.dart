@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+import 'first.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,39 +30,83 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static const platform =
-      const MethodChannel('com.example.native_test/battery');
-  // Get battery level.
-  String _batteryLevel = 'Unknown battery level.';
+  int _counter = 0;
 
-  Future<void> _getBatteryLevel() async {
-    String batteryLevel;
-    try {
-      final int result = await platform.invokeMethod('getBatteryLevel');
-      batteryLevel = 'Battery level at $result % .';
-    } on PlatformException catch (e) {
-      batteryLevel = "Failed to get battery level: '${e.message}'.";
-    }
-
+  void _incrementCounter() {
     setState(() {
-      _batteryLevel = batteryLevel;
+      _counter++;
     });
+  }
+
+  FirstWidgetController controller;
+
+  setType(FirstWidgetController controller, String type) {
+    controller.setType(type);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Center(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            RaisedButton(
-              child: Text('Get Battery Level'),
-              onPressed: _getBatteryLevel,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Card(
+              child: SizedBox(
+                height: 60,
+                width: 222,
+                child: FirstWidget(
+                  onFirstWidgetWidgetCreated: (c) async {
+                    this.controller = c;
+                    var ping_result = await controller.ping();
+                    controller.setType("minion");
+                    print(ping_result);
+                  },
+                ),
+              ),
             ),
-            Text(_batteryLevel),
+            Text(
+              'You have pushed the button this many times:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            Row(
+              children: [
+                FlatButton(
+                  onPressed: () {
+                    setType(controller, "minion");
+                    print('flutter minion');
+                  },
+                  child: Text('Minion'),
+                ),
+                FlatButton(
+                  onPressed: () {
+                    setType(controller, "spell");
+                    print('flutter spell');
+                  },
+                  child: Text('Spell'),
+                ),
+                FlatButton(
+                  onPressed: () {
+                    setType(controller, "hero");
+                    print('flutter hero');
+                  },
+                  child: Text('Hero'),
+                ),
+              ],
+            ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
       ),
     );
   }

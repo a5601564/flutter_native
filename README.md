@@ -1,4 +1,4 @@
-# native_test
+# flutter_plugin_example
 
 A new Flutter application.
 
