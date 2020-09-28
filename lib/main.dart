@@ -62,8 +62,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   onFirstWidgetWidgetCreated: (c) async {
                     this.controller = c;
                     var ping_result = await controller.ping();
-                    controller.setType("minion");
                     print(ping_result);
+
+                    var setType_result = await controller.setType("minion");
+                    print(setType_result);
                   },
                 ),
               ),

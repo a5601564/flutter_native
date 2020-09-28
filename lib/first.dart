@@ -28,7 +28,11 @@ class _FirstWidgetState extends State<FirstWidget> {
         creationParamsCodec: const StandardMessageCodec(),
       );
     }
-    return const Text('iOS platform version is not implemented yet.');
+    return UiKitView(
+      viewType: 'plugins/first_widget',
+      onPlatformViewCreated: _onPlatformViewCreated,
+      creationParamsCodec: const StandardMessageCodec(),
+    );
   }
 
   void _onPlatformViewCreated(int id) {
@@ -48,6 +52,7 @@ class FirstWidgetController {
   Future<String> ping() async {
     return _channel.invokeMethod('ping');
   }
+
   Future<String> setType(String type) async {
     return _channel.invokeMethod('setType', type);
   }
