@@ -18,6 +18,8 @@ class NativeViewFactory : NSObject, FlutterPlatformViewFactory {
         return NativeView(frame,messenger: messenger, viewId:viewId, args:args)
     }
 }
+
+
 public class NativeView : NSObject, FlutterPlatformView {
     
     let frame : CGRect
@@ -43,9 +45,12 @@ public class NativeView : NSObject, FlutterPlatformView {
     }
     
     public func view() -> UIView {
-        let view : UIView = UIView(frame: self.frame)
-        view.backgroundColor = UIColor.lightGray
+        let view  = MyView2(frame: self.frame)
+        
+
+       
+//        self.view.addSubview(label)
         return view
     }
-    
+
 }
