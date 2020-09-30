@@ -55,13 +55,13 @@ public final class FirstWidget implements PlatformView {
 
                font = (double) call.arguments;
                 setCurvedTextType(curvedText,text,type,font);
-                result.success("setFont success");
+                result.success(0.0);
 
             }else if (call.method.equals( "setText")) {
 
                 text = call.arguments.toString();
                 setCurvedTextType(curvedText,text,type,font);
-                result.success("setText success");
+                result.success(null);
             }
             else {
                 result.notImplemented();

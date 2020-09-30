@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   setType(FirstWidgetController controller, String type) {
     controller.setType(type);
-    // controller.setFont(50);
+    controller.setFont(50);
     controller.setText("Carddddddddd");
   }
 
