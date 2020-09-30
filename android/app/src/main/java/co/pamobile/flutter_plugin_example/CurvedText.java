@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -36,20 +37,28 @@ public class CurvedText extends View {
     float scaleRatio = 1;
 
     private void makePath(Path p,float scaleRatio, String cardType) {
+        Log.e("makePath",getWidth() +" --- "+ getHeight());
         switch (cardType){
             case "minion":
-                p.moveTo(0, 5*scaleRatio);
-                p.cubicTo(30*scaleRatio, 20*scaleRatio, 195*scaleRatio, -45*scaleRatio, 248*scaleRatio, 5*scaleRatio);//small
+                p.moveTo(0, getHeight()*0.75f);
+                p.cubicTo(getWidth()*0.25f, getHeight()*1.25f, getWidth()*0.75f, getHeight()*0.25f, getWidth(), getHeight()/2f);//small
+//                p.moveTo(0, 5*scaleRatio);
+//                p.cubicTo(30*scaleRatio, 20*scaleRatio, 195*scaleRatio, -45*scaleRatio, 248*scaleRatio, 5*scaleRatio);//small
                 break;
             case "spell":
-                p.moveTo(0, 10*scaleRatio);
-                p.cubicTo(62*scaleRatio, -20*scaleRatio, 186*scaleRatio, -20*scaleRatio, 248*scaleRatio, 10*scaleRatio);//small
+                p.moveTo(0, getHeight()*0.75f);
+                p.cubicTo(getWidth()*0.25f, getHeight()*0.25f, getWidth()*0.75f, getHeight()*0.25f, getWidth(), getHeight()*0.75f);//small
+//                p.moveTo(0, 10*scaleRatio);
+//                p.cubicTo(62*scaleRatio, -20*scaleRatio, 186*scaleRatio, -20*scaleRatio, 248*scaleRatio, 10*scaleRatio);//small
                 break;
             case "hero":
-                p.moveTo(0, 15*scaleRatio);
-                p.cubicTo(55*scaleRatio, -17*scaleRatio, 167*scaleRatio, -17*scaleRatio, 222*scaleRatio, 15*scaleRatio);//small
+                p.moveTo(0, getHeight()*0.9f);
+                p.cubicTo(getWidth()*0.25f, getHeight()*0.25f, getWidth()*0.75f, getHeight()*0.25f, getWidth(), getHeight()*0.9f);//small
                 break;
         }
+
+//        p.moveTo(0, getHeight()*0.75f);
+//        p.cubicTo(getWidth()*0.25f, getHeight()*1.25f, getWidth()*0.75f, getHeight()*0.25f, getWidth(), getHeight()/2f);//small
     }
 
 
@@ -69,7 +78,7 @@ public class CurvedText extends View {
         makePath(mPath, scaleRatio, cardType);
         mPathPaint = new Paint();
         mPathPaint.setAntiAlias(true);
-        mPathPaint.setColor(Color.TRANSPARENT);
+        mPathPaint.setColor(Color.RED);
         mPathPaint.setStyle(Paint.Style.STROKE);
     }
 
@@ -78,7 +87,7 @@ public class CurvedText extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.BLUE);
-        canvas.translate(0, 40 * scaleRatio);
+//        canvas.translate(0, 40 * scaleRatio);
         canvas.drawPath(mPath, mPathPaint);
         mPaintBorder.setStyle(Paint.Style.STROKE);
         mPaintBorder.setStrokeWidth(12f);
@@ -91,7 +100,6 @@ public class CurvedText extends View {
         mPaintBorder.setTextAlign(Paint.Align.CENTER);
         canvas.drawTextOnPath(textOnPath, mPath, 0, 0, mPaintBorder);
         super.onDraw(canvas);
-
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(0f);
         mPaint.setColor(Color.WHITE);

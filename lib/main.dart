@@ -42,6 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   setType(FirstWidgetController controller, String type) {
     controller.setType(type);
+    // controller.setFont(50);
+    controller.setText("Carddddddddd");
   }
 
   @override
@@ -63,9 +65,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     this.controller = c;
                     var ping_result = await controller.ping();
                     print(ping_result);
-
                     var setType_result = await controller.setType("minion");
-                    print(setType_result);
+                    // var setFont_result = await controller.setFont(50);
+                    // var setText_resule =
+                    //     await controller.setText('Card nameeee');
                   },
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -55,5 +56,13 @@ class FirstWidgetController {
 
   Future<String> setType(String type) async {
     return _channel.invokeMethod('setType', type);
+  }
+
+  Future<double> setFont(double font) async {
+    return _channel.invokeMethod('setFont', font);
+  }
+
+  Future<String> setText(String text) async {
+    return _channel.invokeMethod('setText', text);
   }
 }
