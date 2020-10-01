@@ -61,7 +61,7 @@ flutter:
   fonts:
     - family: BelweFont
       fonts:
-        - asset: fonts/Belwe-bd-bt-bold.ttf
+        - asset: fonts/belwe.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

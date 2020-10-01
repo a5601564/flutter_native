@@ -31,13 +31,12 @@ public final class FirstWidget implements PlatformView {
     @Override
     public void dispose() {
     }
-    double font = 60;
+    double font = 80;
     String text = "card name text asdasd";
     String type = "minion";
     Map<String, Object> size = new HashMap<>();
     FirstWidget(Context context, BinaryMessenger messenger, int id) {
         curvedText = new CurvedText(context, 1, "minion");
-
         curvedText.setSize(size);
         curvedText.init(3,"minion");
 

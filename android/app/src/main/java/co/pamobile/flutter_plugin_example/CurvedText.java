@@ -6,8 +6,9 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Typeface;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.core.content.res.ResourcesCompat;
 
 import java.util.Map;
 
@@ -78,15 +79,17 @@ public class CurvedText extends View {
 
     public CurvedText(Context context, float scaleRatio, String cardType) {
         super(context);
+        Typeface typeface = ResourcesCompat.getFont(context, R.font.belwe);
+        this.mFont = typeface;
+
+        Log.e("fontsss", "aa");
         init(scaleRatio,cardType);
     }
 
     void init(float scaleRatio, String cardType){
         setFocusable(true);
         this.scaleRatio = scaleRatio;
-//        Typeface tfbbbb = Typeface.createFromAsset(context.getAssets(),
-//                "font/Belwe-bd-bt-bold.ttf");
-//        this.mFont = tfbbbb;
+
         //allocate resource, avoid allocate in onDraw\
         mPaintBorder = new Paint();
         mPaint = new Paint();

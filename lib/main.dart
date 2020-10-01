@@ -136,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     "x1": 90 / 611,
                     "y1": 170 / 165,
                     "x2": (585 - 133) / 611,
-                    "y2": 25 / 165,
+                    "y2": -5 / 165,
                     "x3": 611 / 611,
                     "y3": 125 / 165,
                   };
