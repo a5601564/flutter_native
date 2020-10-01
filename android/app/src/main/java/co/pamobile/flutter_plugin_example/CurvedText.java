@@ -9,13 +9,15 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.Map;
+
 public class CurvedText extends View {
     private Paint mPaint;
     private Paint mPaintBorder;
 
     private Path mPath;
     private Paint mPathPaint;
-
+    private Map size;
     private Typeface mFont;
     float superSetTextSize = 0;
 
@@ -27,6 +29,9 @@ public class CurvedText extends View {
         this.textOnPath = textOnPath;
         this.superSetTextSize = textSize;
     }
+    public void setSize(Map size){
+        this.size = size;
+    }
 
     public void setTextOnPath(String textOnPath) {
         this.textOnPath = textOnPath;
@@ -37,11 +42,20 @@ public class CurvedText extends View {
     float scaleRatio = 1;
 
     private void makePath(Path p,float scaleRatio, String cardType) {
-        Log.e("makePath",getWidth() +" --- "+ getHeight());
+       // Log.e("makePath",getWidth() +" --- "+ getHeight());
+//        Log.e("e",size.get("x1").toString());
         switch (cardType){
             case "minion":
-                p.moveTo(0, getHeight()*0.75f);
-                p.cubicTo(getWidth()*0.25f, getHeight()*1.25f, getWidth()*0.75f, getHeight()*0.25f, getWidth(), getHeight()/2f);//small
+                if(size == null || size.isEmpty()){
+                    p.moveTo(0, getHeight()*0.84f);
+
+                    p.cubicTo(getWidth()*0.23f, getHeight()*1.25f, getWidth()*0.70f, getHeight()*0.20f, getWidth() * 1, getHeight() * 0.82f);//small
+                }else{
+                    p.moveTo(getWidth() *Float.parseFloat(size.get("x0").toString()) , getHeight()*Float.parseFloat(size.get("y0").toString()));
+
+                    p.cubicTo(getWidth()*Float.parseFloat(size.get("x1").toString()), getHeight()*Float.parseFloat(size.get("y1").toString()), getWidth()* Float.parseFloat(size.get("x2").toString()), getHeight()* Float.parseFloat(size.get("y2").toString()), getWidth() * Float.parseFloat(size.get("x3").toString()), getHeight() * Float.parseFloat(size.get("y3").toString()));//small
+                }
+
 //                p.moveTo(0, 5*scaleRatio);
 //                p.cubicTo(30*scaleRatio, 20*scaleRatio, 195*scaleRatio, -45*scaleRatio, 248*scaleRatio, 5*scaleRatio);//small
                 break;
@@ -70,7 +84,9 @@ public class CurvedText extends View {
     void init(float scaleRatio, String cardType){
         setFocusable(true);
         this.scaleRatio = scaleRatio;
-
+//        Typeface tfbbbb = Typeface.createFromAsset(context.getAssets(),
+//                "font/Belwe-bd-bt-bold.ttf");
+//        this.mFont = tfbbbb;
         //allocate resource, avoid allocate in onDraw\
         mPaintBorder = new Paint();
         mPaint = new Paint();
@@ -86,8 +102,8 @@ public class CurvedText extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawColor(Color.BLUE);
-//        canvas.translate(0, 40 * scaleRatio);
+        canvas.drawColor(Color.argb(80,33,33,55));
+      //  canvas.translate(0, 40 * scaleRatio);
         canvas.drawPath(mPath, mPathPaint);
         mPaintBorder.setStyle(Paint.Style.STROKE);
         mPaintBorder.setStrokeWidth(12f);

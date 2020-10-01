@@ -62,6 +62,10 @@ class FirstWidgetController {
     return _channel.invokeMethod('setFont', font);
   }
 
+  Future<String> setSize(Map size) {
+    return _channel.invokeMethod('setSize', size);
+  }
+
   Future<String> setText(String text) async {
     return _channel.invokeMethod('setText', text);
   }
