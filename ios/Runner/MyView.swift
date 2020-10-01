@@ -1,8 +1,8 @@
 //
-//  MyView.swift
+//  MyView2.swift
 //  Runner
 //
-//  Created by Phuoc on 9/29/20.
+//  Created by Phuoc on 9/30/20.
 //
 
 import Foundation
@@ -10,90 +10,48 @@ class MyView: UIView {
     override func draw(_ rect: CGRect) {
            guard let context = UIGraphicsGetCurrentContext() else { return }
            let size = self.bounds.size
+        let height = size.height;
+        let width = size.width;
+        print(height , " : " ,width);
+        let bezierPath = UIBezierPath()
+        bezierPath.move(to: CGPoint(x: (0/611)*width, y: (125/165)*height))
+        bezierPath.addCurve(to: CGPoint(x:(611/611)*width, y: (125/165)*height),
+                            controlPoint1: CGPoint(x: (90/611)*width, y: (170/165)*height),
+                            controlPoint2: CGPoint(x:(450/611)*width, y: (15/165)*height))
+//
+//        bezierPath.addCurve(to: CGPoint(x:(262/500)*width, y: (356/500)*height),
+//                            controlPoint1: CGPoint(x: (395/500)*width, y: (344/500)*height),
+//                            controlPoint2: CGPoint(x: (486/500)*width, y: (354/500)*height))
+////
+//        bezierPath.addCurve(to: CGPoint(x:(582/500)*width, y: (365/500)*height),
+//                            controlPoint1: CGPoint(x: (618/500)*width, y: (434/500)*height),
+//                            controlPoint2: CGPoint(x: (603/500)*width, y: (431/500)*height))
+       
+        
 
-           context.translateBy (x: size.width / 2, y: size.height / 2)
-           context.scaleBy (x: 1, y: -1)
+        let attributedString = NSAttributedString(
+            string: "Where did you come f yousdfsd sf sdf sf  go?",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20),
+                NSAttributedString.Key.foregroundColor: UIColor.white
+            ])
+        // Do any additional setup after loading the view.
+        let bezier = Bezier(path: bezierPath.cgPath)
 
-           centreArcPerpendicular(text: "Hello round world", context: context, radius: 100, angle: 0, colour: UIColor.red, font: UIFont.systemFont(ofSize: 16), clockwise: true)
-           centreArcPerpendicular(text: "Anticlockwise", context: context, radius: 100, angle: CGFloat(-M_PI_2), colour: UIColor.red, font: UIFont.systemFont(ofSize: 16), clockwise: false)
-           centre(text: "Hello flat world", context: context, radius: 0, angle: 0 , colour: UIColor.yellow, font: UIFont.systemFont(ofSize: 16), slantAngle: CGFloat(M_PI_4))
+        // generate an image
+        _ = bezier.image(withAttributed: attributedString)
+
+        // or render onto a preexisting context
+        bezier.draw(attributed: attributedString, to: context)
+        
+        let label = UIBezierLabel(frame: .zero)
+            
+        // set the properties
+        label.bezierPath = bezierPath.cgPath
+        label.textAlignment = .center
+        label.text = "Wherecome froo?"
+        label.sizeToFit()
+        
+      //  label.layoutIfNeeded()
        }
-    func centreArcPerpendicular(text str: String, context: CGContext, radius r: CGFloat, angle theta: CGFloat, colour c: UIColor, font: UIFont, clockwise: Bool){
-        // *******************************************************
-        // This draws the String str around an arc of radius r,
-        // with the text centred at polar angle theta
-        // *******************************************************
-
-        let characters: [String] = str.map { String($0) } // An array of single character strings, each character in str
-        let l = characters.count
-        let attributes = [NSAttributedString.Key.font: font]
-
-        var arcs: [CGFloat] = [] // This will be the arcs subtended by each character
-        var totalArc: CGFloat = 0 // ... and the total arc subtended by the string
-
-        // Calculate the arc subtended by each letter and their total
-        for i in 0 ..< l {
-            arcs += [chordToArc(characters[i].size(withAttributes: attributes).width, radius: r)]
-            totalArc += arcs[i]
-        }
-
-        // Are we writing clockwise (right way up at 12 o'clock, upside down at 6 o'clock)
-        // or anti-clockwise (right way up at 6 o'clock)?
-        let direction: CGFloat = clockwise ? -1 : 1
-        let slantCorrection: CGFloat = clockwise ? -.pi / 2 : .pi / 2
-
-        // The centre of the first character will then be at
-        // thetaI = theta - totalArc / 2 + arcs[0] / 2
-        // But we add the last term inside the loop
-        var thetaI = theta - direction * totalArc / 2
-
-        for i in 0 ..< l {
-            thetaI += direction * arcs[i] / 2
-            // Call centerText with each character in turn.
-            // Remember to add +/-90º to the slantAngle otherwise
-            // the characters will "stack" round the arc rather than "text flow"
-            centre(text: characters[i], context: context, radius: r, angle: thetaI, colour: c, font: font, slantAngle: thetaI + slantCorrection)
-            // The centre of the next character will then be at
-            // thetaI = thetaI + arcs[i] / 2 + arcs[i + 1] / 2
-            // but again we leave the last term to the start of the next loop...
-            thetaI += direction * arcs[i] / 2
-        }
-    }
-
-    func chordToArc(_ chord: CGFloat, radius: CGFloat) -> CGFloat {
-        // *******************************************************
-        // Simple geometry
-        // *******************************************************
-        return 2 * asin(chord / (2 * radius))
-    }
-
-    func centre(text str: String, context: CGContext, radius r: CGFloat, angle theta: CGFloat, colour c: UIColor, font: UIFont, slantAngle: CGFloat) {
-        // *******************************************************
-        // This draws the String str centred at the position
-        // specified by the polar coordinates (r, theta)
-        // i.e. the x= r * cos(theta) y= r * sin(theta)
-        // and rotated by the angle slantAngle
-        // *******************************************************
-
-        // Set the text attributes
-        let attributes = [NSAttributedString.Key.foregroundColor: c, NSAttributedString.Key.font: font]
-        //let attributes = [NSForegroundColorAttributeName: c, NSFontAttributeName: font]
-        // Save the context
-        context.saveGState()
-        // Undo the inversion of the Y-axis (or the text goes backwards!)
-        context.scaleBy(x: 1, y: -1)
-        // Move the origin to the centre of the text (negating the y-axis manually)
-        context.translateBy(x: r * cos(theta), y: -(r * sin(theta)))
-        // Rotate the coordinate system
-        context.rotate(by: -slantAngle)
-        // Calculate the width of the text
-        let offset = str.size(withAttributes: attributes)
-        // Move the origin by half the size of the text
-        context.translateBy (x: -offset.width / 2, y: -offset.height / 2) // Move the origin to the centre of the text (negating the y-axis manually)
-        // Draw the text
-        str.draw(at: CGPoint(x: 0, y: 0), withAttributes: attributes)
-        // Restore the context
-        context.restoreGState()
-    }
-
 }

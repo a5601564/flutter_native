@@ -15,13 +15,13 @@
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		9801F54F25234ADD0053BD08 /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9801F54E25234ADD0053BD08 /* MyView.swift */; };
 		9801F55725234F8E0053BD08 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9801F55625234F8E0053BD08 /* ContentView.swift */; };
+		980B118B2525D94C00C44D0D /* NativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980B118A2525D94C00C44D0D /* NativeView.swift */; };
 		987876722521C65700B1A4C1 /* NativeViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987876712521C65700B1A4C1 /* NativeViewFactory.swift */; };
 		987876742521D05C00B1A4C1 /* FirstWidgetPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987876732521D05C00B1A4C1 /* FirstWidgetPlugin.swift */; };
 		98F7BBC1252433E60069BA3F /* BezierString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F7BBBD252433E50069BA3F /* BezierString.swift */; };
 		98F7BBC2252433E60069BA3F /* Bezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F7BBBE252433E50069BA3F /* Bezier.swift */; };
 		98F7BBC3252433E60069BA3F /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F7BBBF252433E50069BA3F /* Geometry.swift */; };
 		98F7BBC4252433E60069BA3F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F7BBC0252433E50069BA3F /* ViewController.swift */; };
-		98F7BBC62524357E0069BA3F /* MyView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F7BBC52524357E0069BA3F /* MyView2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,13 +53,13 @@
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9801F54E25234ADD0053BD08 /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
 		9801F55625234F8E0053BD08 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		980B118A2525D94C00C44D0D /* NativeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeView.swift; sourceTree = "<group>"; };
 		987876712521C65700B1A4C1 /* NativeViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeViewFactory.swift; sourceTree = "<group>"; };
 		987876732521D05C00B1A4C1 /* FirstWidgetPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstWidgetPlugin.swift; sourceTree = "<group>"; };
 		98F7BBBD252433E50069BA3F /* BezierString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BezierString.swift; path = BezierString/BezierString.swift; sourceTree = "<group>"; };
 		98F7BBBE252433E50069BA3F /* Bezier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bezier.swift; path = BezierString/Bezier.swift; sourceTree = "<group>"; };
 		98F7BBBF252433E50069BA3F /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Geometry.swift; path = BezierString/Geometry.swift; sourceTree = "<group>"; };
 		98F7BBC0252433E50069BA3F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = BezierString/ViewController.swift; sourceTree = "<group>"; };
-		98F7BBC52524357E0069BA3F /* MyView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +117,8 @@
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				987876712521C65700B1A4C1 /* NativeViewFactory.swift */,
+				980B118A2525D94C00C44D0D /* NativeView.swift */,
 				9801F54E25234ADD0053BD08 /* MyView.swift */,
-				98F7BBC52524357E0069BA3F /* MyView2.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 				987876732521D05C00B1A4C1 /* FirstWidgetPlugin.swift */,
 				9801F55625234F8E0053BD08 /* ContentView.swift */,
@@ -244,7 +244,6 @@
 				98F7BBC4252433E60069BA3F /* ViewController.swift in Sources */,
 				98F7BBC2252433E60069BA3F /* Bezier.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
-				98F7BBC62524357E0069BA3F /* MyView2.swift in Sources */,
 				987876742521D05C00B1A4C1 /* FirstWidgetPlugin.swift in Sources */,
 				9801F55725234F8E0053BD08 /* ContentView.swift in Sources */,
 				9801F54F25234ADD0053BD08 /* MyView.swift in Sources */,
@@ -252,6 +251,7 @@
 				987876722521C65700B1A4C1 /* NativeViewFactory.swift in Sources */,
 				98F7BBC3252433E60069BA3F /* Geometry.swift in Sources */,
 				98F7BBC1252433E60069BA3F /* BezierString.swift in Sources */,
+				980B118B2525D94C00C44D0D /* NativeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

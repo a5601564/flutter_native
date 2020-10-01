@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         child: Stack(children: [
           Positioned(
-            top: 305,
+            top: 270,
             left: 85,
             child: Card(
               color: Colors.transparent.withOpacity(0.5),

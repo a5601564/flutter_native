@@ -20,37 +20,3 @@ class NativeViewFactory : NSObject, FlutterPlatformViewFactory {
 }
 
 
-public class NativeView : NSObject, FlutterPlatformView {
-    
-    let frame : CGRect
-    let viewId : Int64
-    
-    init(_ frame:CGRect,messenger: FlutterBinaryMessenger, viewId:Int64, args: Any?){
-        self.frame = frame
-        self.viewId = viewId
-        
-        let channel = FlutterMethodChannel(name: "plugins/first_widget_\(viewId)",
-                                              binaryMessenger: messenger)
-       channel.setMethodCallHandler({ (call: FlutterMethodCall, result: FlutterResult) -> Void in
-        switch call.method {
-         case "ping":
-            result("ping success")
-        case "setType":
-            result("setType success")
-         default:
-            result(FlutterMethodNotImplemented)
-         }
-    
-       })
-    }
-    
-    public func view() -> UIView {
-        let view  = MyView2(frame: self.frame)
-        
-
-       
-//        self.view.addSubview(label)
-        return view
-    }
-
-}
