@@ -87,7 +87,6 @@ public final class FirstWidget implements PlatformView {
 //            Log.e("call ","spell");
             curvedText.setSize(size);
             curvedText.init(3,"spell");
-
             curvedText.setTextOnPath(text,floatFontSize);
             curvedText.invalidate();
         } else if(type.equals("minion")) {
