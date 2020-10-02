@@ -32,20 +32,20 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   FirstWidgetController controller;
 
-  Map sizeMap = {
-    "x0": 0,
-    "y0": 125 / 165,
-    "x1": 90 / 611,
-    "y1": 170 / 165,
-    "x2": (585 - 133) / 611,
-    "y2": 15 / 165,
+  Map curveMap = {
+    "x0": 0 / 611,
+    "y0": 165 / 165,
+    "x1": 165 / 611,
+    "y1": 69 / 165,
+    "x2": 501 / 611,
+    "y2": 69 / 165,
     "x3": 611 / 611,
-    "y3": 125 / 165,
+    "y3": 165 / 165,
   };
 
   setType(FirstWidgetController controller, String type) {
     controller.setType(type);
-    controller.setFont(70);
+    controller.setFontSize(70);
     controller.setText("Carddddddddd");
   }
 
@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         child: Stack(children: [
           Positioned(
-            top: 270,
+            top: 240,
             left: 85,
             child: Card(
               color: Colors.transparent.withOpacity(0.5),
@@ -76,9 +76,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     this.controller = c;
                     var ping_result = await controller.ping();
                     print(ping_result);
-                    var setType_result = await controller.setType("minion");
-                    var setSize = await controller.setSize(sizeMap);
-                    var setFont_result = await controller.setFont(50);
+                    var setType_result = await controller.setType("hero");
+                    var setCurve = await controller.setCurve(curveMap);
+                    var setFont_result = await controller.setFontSize(50);
                     var setText_result =
                         await controller.setText('Card card name on flutter');
                   },
@@ -95,28 +95,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text('click'),
                 onPressed: () {
                   print("x0: " +
-                      sizeMap["x0"].toString() +
+                      curveMap["x0"].toString() +
                       "\n" +
                       "y0: " +
-                      sizeMap["y0"].toString() +
+                      curveMap["y0"].toString() +
                       "\n" +
                       "x1: " +
-                      sizeMap["x1"].toString() +
+                      curveMap["x1"].toString() +
                       "\n" +
                       "y1: " +
-                      sizeMap["y1"].toString() +
+                      curveMap["y1"].toString() +
                       "\n" +
                       "x2: " +
-                      sizeMap["x2"].toString() +
+                      curveMap["x2"].toString() +
                       "\n" +
                       "y2: " +
-                      sizeMap["y2"].toString() +
+                      curveMap["y2"].toString() +
                       "\n" +
                       "x3: " +
-                      sizeMap["x3"].toString() +
+                      curveMap["x3"].toString() +
                       "\n" +
                       "y3: " +
-                      sizeMap["y3"].toString() +
+                      curveMap["y3"].toString() +
                       "\n");
                 },
               ),
@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: FlatButton(
                 child: Text('click'),
                 onPressed: () {
-                  sizeMap = {
+                  curveMap = {
                     "x0": 0,
                     "y0": 125 / 165,
                     "x1": 90 / 611,
@@ -140,8 +140,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     "x3": 611 / 611,
                     "y3": 125 / 165,
                   };
-                  controller.setSize(sizeMap);
-                  controller.setFont(29);
+                  controller.setCurve(curveMap);
+                  controller.setFontSize(29);
                   controller.setText('Card name after click');
                   print("clicked");
                   setState(() {});
@@ -159,24 +159,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text('x0'),
                     Container(
                       child: Slider(
-                        value: sizeMap["x0"].toDouble(),
+                        value: curveMap["x0"].toDouble(),
                         min: -1.0,
                         max: 2.0,
                         onChanged: (value) async {
-                          sizeMap["x0"] = value.toDouble();
-                          var setSize = await controller.setSize(sizeMap);
+                          curveMap["x0"] = value.toDouble();
+                          var setCurve = await controller.setCurve(curveMap);
                           setState(() {});
                         },
                       ),
                     ),
                     Container(
                       child: Slider(
-                        value: sizeMap["y0"].toDouble(),
+                        value: curveMap["y0"].toDouble(),
                         min: -1.0,
                         max: 2.0,
                         onChanged: (value) async {
-                          sizeMap["y0"] = value.toDouble();
-                          var setSize = await controller.setSize(sizeMap);
+                          curveMap["y0"] = value.toDouble();
+                          var setCurve = await controller.setCurve(curveMap);
                           setState(() {});
                         },
                       ),
@@ -188,24 +188,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text('x1'),
                     Container(
                       child: Slider(
-                        value: sizeMap["x1"].toDouble(),
+                        value: curveMap["x1"].toDouble(),
                         min: -1.0,
                         max: 2.0,
                         onChanged: (value) async {
-                          sizeMap["x1"] = value.toDouble();
-                          var setSize = await controller.setSize(sizeMap);
+                          curveMap["x1"] = value.toDouble();
+                          var setCurve = await controller.setCurve(curveMap);
                           setState(() {});
                         },
                       ),
                     ),
                     Container(
                       child: Slider(
-                        value: sizeMap["y1"].toDouble(),
+                        value: curveMap["y1"].toDouble(),
                         min: -1.0,
                         max: 2.0,
                         onChanged: (value) async {
-                          sizeMap["y1"] = value.toDouble();
-                          var setSize = await controller.setSize(sizeMap);
+                          curveMap["y1"] = value.toDouble();
+                          var setCurve = await controller.setCurve(curveMap);
                           setState(() {});
                         },
                       ),
@@ -217,24 +217,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text('x2'),
                     Container(
                       child: Slider(
-                        value: sizeMap["x2"].toDouble(),
+                        value: curveMap["x2"].toDouble(),
                         min: -1.0,
                         max: 2.0,
                         onChanged: (value) async {
-                          sizeMap["x2"] = value.toDouble();
-                          var setSize = await controller.setSize(sizeMap);
+                          curveMap["x2"] = value.toDouble();
+                          var setCurve = await controller.setCurve(curveMap);
                           setState(() {});
                         },
                       ),
                     ),
                     Container(
                       child: Slider(
-                        value: sizeMap["y2"].toDouble(),
+                        value: curveMap["y2"].toDouble(),
                         min: -1.0,
                         max: 2.0,
                         onChanged: (value) async {
-                          sizeMap["y2"] = value.toDouble();
-                          var setSize = await controller.setSize(sizeMap);
+                          curveMap["y2"] = value.toDouble();
+                          var setCurve = await controller.setCurve(curveMap);
                           setState(() {});
                         },
                       ),
@@ -246,24 +246,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text('x3'),
                     Container(
                       child: Slider(
-                        value: sizeMap["x3"].toDouble(),
+                        value: curveMap["x3"].toDouble(),
                         min: -1.0,
                         max: 2.0,
                         onChanged: (value) async {
-                          sizeMap["x3"] = value.toDouble();
-                          var setSize = await controller.setSize(sizeMap);
+                          curveMap["x3"] = value.toDouble();
+                          var setCurve = await controller.setCurve(curveMap);
                           setState(() {});
                         },
                       ),
                     ),
                     Container(
                       child: Slider(
-                        value: sizeMap["y3"].toDouble(),
+                        value: curveMap["y3"].toDouble(),
                         min: -1.0,
                         max: 2.0,
                         onChanged: (value) async {
-                          sizeMap["y3"] = value.toDouble();
-                          var setSize = await controller.setSize(sizeMap);
+                          curveMap["y3"] = value.toDouble();
+                          var setCurve = await controller.setCurve(curveMap);
                           setState(() {});
                         },
                       ),

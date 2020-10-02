@@ -34,10 +34,10 @@ public final class FirstWidget implements PlatformView {
     double font = 80;
     String text = "card name text asdasd";
     String type = "minion";
-    Map<String, Object> size = new HashMap<>();
+    Map<String, Object> curve = new HashMap<>();
     FirstWidget(Context context, BinaryMessenger messenger, int id) {
         curvedText = new CurvedText(context, 1, "minion");
-        curvedText.setSize(size);
+        curvedText.setCurve(curve);
         curvedText.init(3,"minion");
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -48,57 +48,54 @@ public final class FirstWidget implements PlatformView {
       //  Log.e("EEE","plugins/first_widget_"+id);
         (new MethodChannel(messenger, "plugins/first_widget_" + id)).setMethodCallHandler(((call, result) -> {
 
-            if (call.method.equals( "ping")) {
-                result.success("ping success");
-
-            } else
-                if (call.method.equals( "setType")) {
-
-                type = call.arguments.toString();
-                setCurvedTextType(curvedText,text,type,font, size);
-                result.success("setType success");
-
-            }else if (call.method.equals( "setFont")) {
-
-               font = (double) call.arguments;
-                setCurvedTextType(curvedText,text,type,font, size);
-                result.success(0.0);
-
-            }else if (call.method.equals( "setText")) {
-
-                text = call.arguments.toString();
-                setCurvedTextType(curvedText,text,type,font, size);
-                result.success("aa");
-            }else if (call.method.equals( "setSize")) {
-
-                size = (Map<String, Object>) call.arguments;
-                setCurvedTextType(curvedText,text,type,font, size);
-                result.success("aa");
-            }
-            else {
-                result.notImplemented();
+            switch (call.method) {
+                case "ping":
+                    result.success("ping success");
+                    break;
+                case "setType":
+                    type = call.arguments.toString();
+                    setCurvedTextType(curvedText, text, type, font, curve);
+                    result.success("setType success");
+                    break;
+                case "setFontSize":
+                    font = (double) call.arguments;
+                    setCurvedTextType(curvedText, text, type, font, curve);
+                    result.success(0.0);
+                    break;
+                case "setText":
+                    text = call.arguments.toString();
+                    setCurvedTextType(curvedText, text, type, font, curve);
+                    result.success("aa");
+                    break;
+                case "setCurve":
+                    curve = (Map<String, Object>) call.arguments;
+                    setCurvedTextType(curvedText, text, type, font, curve);
+                    result.success("aa");
+                    break;
+                default:
+                    result.notImplemented();
+                    break;
             }
         }));
     }
 
-    void setCurvedTextType(CurvedText curvedText,String text,String type,double fontSize, Map size){
+    void setCurvedTextType(CurvedText curvedText,String text,String type,double fontSize, Map curve){
         float floatFontSize = (float) fontSize;
         if(type.equals("spell")){
-//            Log.e("call ","spell");
-            curvedText.setSize(size);
+            Log.e("test: ","spell func");
+            curvedText.setCurve(curve);
             curvedText.init(3,"spell");
             curvedText.setTextOnPath(text,floatFontSize);
             curvedText.invalidate();
         } else if(type.equals("minion")) {
-//            Log.e("call ","minion");
-            curvedText.setSize(size);
+            curvedText.setCurve(curve);
             curvedText.init(3,"minion");
-
             curvedText.setTextOnPath(text,floatFontSize);
             curvedText.invalidate();
         } else {
-//            Log.e("call ","hero");
-            curvedText.setSize(size);
+            Log.e("test: ","hero func");
+
+            curvedText.setCurve(curve);
             curvedText.init(3,"hero");
             curvedText.setTextOnPath(text,floatFontSize);
             curvedText.invalidate();

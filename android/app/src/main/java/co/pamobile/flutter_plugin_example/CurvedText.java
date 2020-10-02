@@ -18,7 +18,7 @@ public class CurvedText extends View {
 
     private Path mPath;
     private Paint mPathPaint;
-    private Map size;
+    private Map curve;
     private Typeface mFont;
     float superSetTextSize = 0;
 
@@ -30,8 +30,8 @@ public class CurvedText extends View {
         this.textOnPath = textOnPath;
         this.superSetTextSize = textSize;
     }
-    public void setSize(Map size){
-        this.size = size;
+    public void setCurve(Map curve){
+        this.curve = curve;
     }
 
     public void setTextOnPath(String textOnPath) {
@@ -44,31 +44,40 @@ public class CurvedText extends View {
 
     private void makePath(Path p,float scaleRatio, String cardType) {
        // Log.e("makePath",getWidth() +" --- "+ getHeight());
-//        Log.e("e",size.get("x1").toString());
+//        Log.e("e",curve.get("x1").toString());
         switch (cardType){
             case "minion":
-                if(size == null || size.isEmpty()){
+                if(curve == null || curve.isEmpty()){
                     p.moveTo(0, getHeight()*0.84f);
 
                     p.cubicTo(getWidth()*0.23f, getHeight()*1.25f, getWidth()*0.70f, getHeight()*0.20f, getWidth() * 1, getHeight() * 0.82f);//small
                 }else{
-                    p.moveTo(getWidth() *Float.parseFloat(size.get("x0").toString()) , getHeight()*Float.parseFloat(size.get("y0").toString()));
+                    p.moveTo(getWidth() *Float.parseFloat(curve.get("x0").toString()) , getHeight()*Float.parseFloat(curve.get("y0").toString()));
 
-                    p.cubicTo(getWidth()*Float.parseFloat(size.get("x1").toString()), getHeight()*Float.parseFloat(size.get("y1").toString()), getWidth()* Float.parseFloat(size.get("x2").toString()), getHeight()* Float.parseFloat(size.get("y2").toString()), getWidth() * Float.parseFloat(size.get("x3").toString()), getHeight() * Float.parseFloat(size.get("y3").toString()));//small
+                    p.cubicTo(getWidth()*Float.parseFloat(curve.get("x1").toString()), getHeight()*Float.parseFloat(curve.get("y1").toString()), getWidth()* Float.parseFloat(curve.get("x2").toString()), getHeight()* Float.parseFloat(curve.get("y2").toString()), getWidth() * Float.parseFloat(curve.get("x3").toString()), getHeight() * Float.parseFloat(curve.get("y3").toString()));//small
                 }
 
-//                p.moveTo(0, 5*scaleRatio);
-//                p.cubicTo(30*scaleRatio, 20*scaleRatio, 195*scaleRatio, -45*scaleRatio, 248*scaleRatio, 5*scaleRatio);//small
                 break;
             case "spell":
-                p.moveTo(0, getHeight()*0.75f);
-                p.cubicTo(getWidth()*0.25f, getHeight()*0.25f, getWidth()*0.75f, getHeight()*0.25f, getWidth(), getHeight()*0.75f);//small
-//                p.moveTo(0, 10*scaleRatio);
-//                p.cubicTo(62*scaleRatio, -20*scaleRatio, 186*scaleRatio, -20*scaleRatio, 248*scaleRatio, 10*scaleRatio);//small
+                if(curve == null || curve.isEmpty()){
+                    p.moveTo(0, getHeight()* (150/165f));
+                    p.cubicTo(getWidth()*(186/611f), getHeight()*(60/165f), getWidth()*(611-186)/611f, getHeight()*60/165f, getWidth() *744/611f, getHeight() * 150/165f);//small
+                }else{
+                    Log.e("test:" ,"spell here");
+                    p.moveTo(getWidth() *Float.parseFloat(curve.get("x0").toString()) , getHeight()*Float.parseFloat(curve.get("y0").toString()));
+                    p.cubicTo(getWidth()*Float.parseFloat(curve.get("x1").toString()), getHeight()*Float.parseFloat(curve.get("y1").toString()), getWidth()* Float.parseFloat(curve.get("x2").toString()), getHeight()* Float.parseFloat(curve.get("y2").toString()), getWidth() * Float.parseFloat(curve.get("x3").toString()), getHeight() * Float.parseFloat(curve.get("y3").toString()));//small
+                }
                 break;
             case "hero":
-                p.moveTo(0, getHeight()*0.9f);
-                p.cubicTo(getWidth()*0.25f, getHeight()*0.25f, getWidth()*0.75f, getHeight()*0.25f, getWidth(), getHeight()*0.9f);//small
+                if(curve == null || curve.isEmpty()){
+                    p.moveTo(0, getHeight()* (165/165f));
+                    p.cubicTo(getWidth()*(165/611f), getHeight()*(69/165f), getWidth()*(501)/611f, getHeight()*69/165f, getWidth() *666/611f, getHeight() * 165/165f);//small
+
+                }else{
+                    Log.e("test:" ,"hero here");
+                    p.moveTo(getWidth() *Float.parseFloat(curve.get("x0").toString()) , getHeight()*Float.parseFloat(curve.get("y0").toString()));
+                    p.cubicTo(getWidth()*Float.parseFloat(curve.get("x1").toString()), getHeight()*Float.parseFloat(curve.get("y1").toString()), getWidth()* Float.parseFloat(curve.get("x2").toString()), getHeight()* Float.parseFloat(curve.get("y2").toString()), getWidth() * Float.parseFloat(curve.get("x3").toString()), getHeight() * Float.parseFloat(curve.get("y3").toString()));//small
+                }
                 break;
         }
 
