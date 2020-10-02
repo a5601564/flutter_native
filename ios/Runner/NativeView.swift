@@ -12,10 +12,9 @@ public class NativeView : NSObject, FlutterPlatformView {
     let viewId : Int64
     
     var myView  = MyView()
-    var size = [
-            "x0" : 1/4,
-            "y0" : 125/165
-        ]
+    var fontSize: CGFloat = 20
+    var text: String = "Default Card name"
+    var type: String = "minion"
     
     init(_ frame:CGRect,messenger: FlutterBinaryMessenger, viewId:Int64, args: Any?){
         self.frame = frame
@@ -29,17 +28,28 @@ public class NativeView : NSObject, FlutterPlatformView {
         switch call.method {
          case "ping":
             result("ping success")
+            
         case "setType":
-           // NativeView.setCurvedTextType(text: "aaa")
+            type = (call.arguments) as! String
+            print(type)
+            setCurvedTextType(text: text,type: type ,fontsize: fontSize)
             result("setType success")
+            
         case "setFont":
+            fontSize = (call.arguments) as! CGFloat
+            print("font size from flutter: ",fontSize)
+            setCurvedTextType(text: text,type: type ,fontsize: fontSize)
             result(nil)
+            
         case "setSize":
             result("setType success")
+            
         case "setText":
             print("ios:", (call.arguments) as! String)
-            setCurvedTextType(text: (call.arguments) as! String, size: size)
+            text = (call.arguments) as! String
+            setCurvedTextType(text: text,type: type ,fontsize: fontSize)
             result("setType success")
+            
          default:
             result(FlutterMethodNotImplemented)
          }
@@ -47,8 +57,8 @@ public class NativeView : NSObject, FlutterPlatformView {
        })
     }
     
-    func setCurvedTextType(text: String, size:[String: Int]){
-        myView.setTextOnPath(text: text, textSize: 30)
+    func setCurvedTextType(text: String, type: String, fontsize: CGFloat){
+        myView.setTextOnPath(text: text, textSize: fontSize)
         myView.setNeedsDisplay()
         print("text ", text)
      }

@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     print(ping_result);
                     var setType_result = await controller.setType("minion");
                     var setSize = await controller.setSize(sizeMap);
-                    // var setFont_result = await controller.setFont(50);
+                    var setFont_result = await controller.setFont(50);
                     var setText_result =
                         await controller.setText('Card card name on flutter');
                   },
@@ -141,7 +141,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     "y3": 125 / 165,
                   };
                   controller.setSize(sizeMap);
+                  controller.setFont(29);
                   controller.setText('Card name after click');
+                  print("clicked");
                   setState(() {});
                 },
               ),
