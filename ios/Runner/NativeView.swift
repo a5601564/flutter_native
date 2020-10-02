@@ -11,16 +11,21 @@ public class NativeView : NSObject, FlutterPlatformView {
     let frame : CGRect
     let viewId : Int64
     
-    static var myView  = MyView()
-
+    var myView  = MyView()
+    var size = [
+            "x0" : 1/4,
+            "y0" : 125/165
+        ]
     
     init(_ frame:CGRect,messenger: FlutterBinaryMessenger, viewId:Int64, args: Any?){
         self.frame = frame
         self.viewId = viewId
-        NativeView.myView.frame = frame
+        myView.frame = frame
+        super.init()
+        
         let channel = FlutterMethodChannel(name: "plugins/first_widget_\(viewId)",
                                               binaryMessenger: messenger)
-       channel.setMethodCallHandler({ (call: FlutterMethodCall, result: FlutterResult) -> Void in
+        channel.setMethodCallHandler({ [self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
         switch call.method {
          case "ping":
             result("ping success")
@@ -33,7 +38,7 @@ public class NativeView : NSObject, FlutterPlatformView {
             result("setType success")
         case "setText":
             print("ios:", (call.arguments) as! String)
-            NativeView.setCurvedTextType(text: (call.arguments) as! String)
+            setCurvedTextType(text: (call.arguments) as! String, size: size)
             result("setType success")
          default:
             result(FlutterMethodNotImplemented)
@@ -42,23 +47,19 @@ public class NativeView : NSObject, FlutterPlatformView {
        })
     }
     
-    static func setCurvedTextType(text: String){
-         
-             print("print minion aaa");
-            
+    func setCurvedTextType(text: String, size:[String: Int]){
         myView.setTextOnPath(text: text, textSize: 30)
-        NativeView.myView.layoutIfNeeded()
+        myView.setNeedsDisplay()
         print("text ", text)
-        
      }
     
     public func view() -> UIView {
-        NativeView.myView.backgroundColor = UIColor.blue.withAlphaComponent(0.3)
+        myView.backgroundColor = UIColor.blue.withAlphaComponent(0.3)
 //        self.view.addSubview(label)
-        NativeView.myView.layoutIfNeeded()
-        return NativeView.myView
+        myView.setNeedsDisplay()
+        return myView
     }
     
   
-
 }
+
