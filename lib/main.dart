@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     this.controller = c;
                     var ping_result = await controller.ping();
                     print(ping_result);
-                    var setType_result = await controller.setType("hero");
+                    var setType_result = await controller.setType("spell");
                     var setCurve = await controller.setCurve(curveMap);
                     var setFont_result = await controller.setFontSize(50);
                     var setText_result =
@@ -142,6 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   };
                   controller.setCurve(curveMap);
                   controller.setFontSize(29);
+                  controller.setType("hero");
                   controller.setText('Card name after click');
                   print("clicked");
                   setState(() {});

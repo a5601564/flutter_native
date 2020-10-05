@@ -35,13 +35,13 @@ public class NativeView : NSObject, FlutterPlatformView {
             setCurvedTextType(text: text,type: type ,fontsize: fontSize)
             result("setType success")
             
-        case "setFont":
+        case "setFontSize":
             fontSize = (call.arguments) as! CGFloat
             print("font size from flutter: ",fontSize)
             setCurvedTextType(text: text,type: type ,fontsize: fontSize)
             result(nil)
             
-        case "setSize":
+        case "setCurve":
             result("setType success")
             
         case "setText":
@@ -58,7 +58,7 @@ public class NativeView : NSObject, FlutterPlatformView {
     }
     
     func setCurvedTextType(text: String, type: String, fontsize: CGFloat){
-        myView.setTextOnPath(text: text, textSize: fontSize)
+        myView.setTextOnPath(text: text, type: type, textSize: fontSize)
         myView.setNeedsDisplay()
         print("text ", text)
      }
