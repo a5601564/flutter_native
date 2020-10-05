@@ -15,7 +15,6 @@ import java.util.Map;
 public class CurvedText extends View {
     private Paint mPaint;
     private Paint mPaintBorder;
-
     private Path mPath;
     private Paint mPathPaint;
     private Map curve;
@@ -88,10 +87,9 @@ public class CurvedText extends View {
 
     public CurvedText(Context context, float scaleRatio, String cardType) {
         super(context);
-        Typeface typeface = ResourcesCompat.getFont(context, R.font.belwe);
-        this.mFont = typeface;
-
-        Log.e("fontsss", "aa");
+        Typeface tfbbbb = Typeface.createFromAsset(context.getAssets(),
+                "fonts/belwe.ttf");
+        this.mFont = tfbbbb;
         init(scaleRatio,cardType);
     }
 
@@ -121,7 +119,7 @@ public class CurvedText extends View {
         mPaintBorder.setStrokeWidth(12f);
         mPaintBorder.setColor(Color.BLACK);
         mPaintBorder.setTextSize(superSetTextSize);
-
+        mPaintBorder.setTypeface(mFont);
         mPaintBorder.setAntiAlias(true);
         mPaintBorder.setStrokeJoin(Paint.Join.ROUND);
         mPaintBorder.setStrokeMiter(10f);
@@ -132,7 +130,7 @@ public class CurvedText extends View {
         mPaint.setStrokeWidth(0f);
         mPaint.setColor(Color.WHITE);
         mPaint.setTextSize(superSetTextSize);
-
+        mPaint.setTypeface(mFont);
         mPaint.setAntiAlias(true);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeMiter(10f);
