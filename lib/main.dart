@@ -42,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "x3": 611 / 611,
     "y3": 165 / 165,
   };
+  double fontSize = 40;
 
   setType(FirstWidgetController controller, String type) {
     controller.setType(type);
@@ -265,6 +266,23 @@ class _MyHomePageState extends State<MyHomePage> {
                         onChanged: (value) async {
                           curveMap["y3"] = value.toDouble();
                           var setCurve = await controller.setCurve(curveMap);
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text('font'),
+                    Container(
+                      child: Slider(
+                        value: fontSize,
+                        min: 10.0,
+                        max: 100.0,
+                        onChanged: (value) async {
+                          fontSize = value.toDouble();
+                          var set = await controller.setFontSize(fontSize);
                           setState(() {});
                         },
                       ),

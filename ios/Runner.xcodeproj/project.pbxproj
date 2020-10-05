@@ -16,6 +16,7 @@
 		9801F54F25234ADD0053BD08 /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9801F54E25234ADD0053BD08 /* MyView.swift */; };
 		9801F55725234F8E0053BD08 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9801F55625234F8E0053BD08 /* ContentView.swift */; };
 		980B118B2525D94C00C44D0D /* NativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980B118A2525D94C00C44D0D /* NativeView.swift */; };
+		987284D8252ACF3800DA031A /* belwe.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 987284D7252ACF2000DA031A /* belwe.ttf */; };
 		987876722521C65700B1A4C1 /* NativeViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987876712521C65700B1A4C1 /* NativeViewFactory.swift */; };
 		987876742521D05C00B1A4C1 /* FirstWidgetPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987876732521D05C00B1A4C1 /* FirstWidgetPlugin.swift */; };
 		98F7BBC1252433E60069BA3F /* BezierString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F7BBBD252433E50069BA3F /* BezierString.swift */; };
@@ -54,6 +55,7 @@
 		9801F54E25234ADD0053BD08 /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
 		9801F55625234F8E0053BD08 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		980B118A2525D94C00C44D0D /* NativeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeView.swift; sourceTree = "<group>"; };
+		987284D7252ACF2000DA031A /* belwe.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = belwe.ttf; sourceTree = "<group>"; };
 		987876712521C65700B1A4C1 /* NativeViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeViewFactory.swift; sourceTree = "<group>"; };
 		987876732521D05C00B1A4C1 /* FirstWidgetPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstWidgetPlugin.swift; sourceTree = "<group>"; };
 		98F7BBBD252433E50069BA3F /* BezierString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BezierString.swift; path = BezierString/BezierString.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				987284D6252ACECD00DA031A /* fonts */,
 				98F7BBBE252433E50069BA3F /* Bezier.swift */,
 				98F7BBBD252433E50069BA3F /* BezierString.swift */,
 				98F7BBBF252433E50069BA3F /* Geometry.swift */,
@@ -131,6 +134,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		987284D6252ACECD00DA031A /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				987284D7252ACF2000DA031A /* belwe.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +210,7 @@
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
+				987284D8252ACF3800DA031A /* belwe.ttf in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
