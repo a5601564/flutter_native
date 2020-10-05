@@ -282,7 +282,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         max: 100.0,
                         onChanged: (value) async {
                           fontSize = value.toDouble();
-                          var set = await controller.setFontSize(fontSize);
+                          controller.setFontSize(fontSize);
                           setState(() {});
                         },
                       ),
