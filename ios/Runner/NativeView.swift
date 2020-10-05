@@ -60,7 +60,7 @@ public class NativeView : NSObject, FlutterPlatformView {
     func setCurvedTextType(text: String, type: String, fontsize: CGFloat){
         myView.setTextOnPath(text: text, type: type, textSize: fontSize)
         myView.setNeedsDisplay()
-        print("text ", text)
+        print("fontsize ", fontsize)
      }
     
     public func view() -> UIView {
